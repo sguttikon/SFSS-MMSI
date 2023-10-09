@@ -1,21 +1,17 @@
 # SFSS-MMSI
+
 Single Frame Semantic Segmentation Using Multi-Modal Spherical Images
+
+## Description
+
+The official implementation of **Single Frame Semantic Segmentation Using Multi-Modal Spherical Images, Accepted to WACV 2024**:
+More details can be found in our paper [[**PDF**](https://arxiv.org/pdf/2308.09369.pdf)].
 
 ## Getting started
 
 ```python
 <root>$ git clone git@github.com:sguttikon/SFSS-MMSI.git
 ```
-
-## Name
-Single Frame Semantic Segmentation Using Multi-Modal Spherical Images
-
-## Description
-The official implementation of **Single Frame Semantic Segmentation Using Multi-Modal Spherical Images, Accepted to WACV 2024**:
-More details can be found in our paper [[**PDF**](https://arxiv.org/pdf/2308.09369.pdf)].
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
 
 ## Installation
 
@@ -57,7 +53,10 @@ eval.py
 
 ### Datapreparation
 
+TODO
+
 ### Train
+
 ```python
 (sfss_mmsi) <repo_path>$ python -m train --config configs.sid.unimodal --devices 1
 (sfss_mmsi) <repo_path>$ python -m train --config configs.sid.bimodal --devices 1
@@ -65,6 +64,7 @@ eval.py
 ```
 
 ### Eval
+
 ```python
 (sfss_mmsi) <repo_path>$ python -m eval --config configs.sid.unimodal --split validation --epochs epoch-best.pth
 (sfss_mmsi) <repo_path>$ python -m eval --config configs.sid.bimodal --split validation --epochs epoch-best.pth
@@ -77,11 +77,11 @@ eval.py
 
 | **Network**       | **Fold**  | **mAcc**    | **aAcc**    | **mIoU**    | Download        |
 | :---------------: | :-------: | :---------: | :---------: | :---------: | :-------------: |
-| Unimodal (RGB)    |    avg    |   63.955    |   80.417    |   52.873    |  |
-| Bimodal  (RGB-D)  |    avg    |   66.021    |   84.889    |   55.492    |  |
-| Bimodal  (RGB-N)  |    avg    |   68.787    |   86.686    |   58.239    |  |
-| Bimodal  (RGB-H)  |    avg    | **70.683**  | **88.066**  | **60.603**  |  |
-| Trimodal (RGB-D-N)|    avg    |   69.031    |   87.322    |   59.426    |  (download)[https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStanford2D3DS_1024x512]|
+| Unimodal (RGB)    |    avg    |   63.955    |   80.417    |   52.873    | [download](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStanford2D3DS_1024x512) |
+| Bimodal  (RGB-D)  |    avg    |   66.021    |   84.889    |   55.492    | [download](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStanford2D3DS_1024x512) |
+| Bimodal  (RGB-N)  |    avg    |   68.787    |   86.686    |   58.239    | [download](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStanford2D3DS_1024x512) |
+| Bimodal  (RGB-H)  |    avg    | **70.683**  | **88.066**  | **60.603**  | [download](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStanford2D3DS_1024x512) |
+| Trimodal (RGB-D-N)|    avg    |   69.031    |   87.322    |   59.426    | [download](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStanford2D3DS_1024x512) |
 
 ### Structured3D dataset
 
@@ -102,27 +102,33 @@ eval.py
 | Trimodal (RGB-D-N)|   **51.563**   |   **78.937**   |   **39.263**   |    50.007     |    71.422     |    35.520     |  |
 
 ## Visuals
+
 Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
 
 ## Contributing
+
 If you are willing to contribute to this project, please contact with the authors.
 
 ## Authors and acknowledgment
+
 Our code is heavily based on [Trans4PASS+](https://github.com/jamycheung/Trans4PASS) and [RGBX_Semantic_Segmentation](https://github.com/huaaaliu/RGBX_Semantic_Segmentation), thanks for their excellent work!
 
 We also appreciate the open-source works:
 * [SegFormer](https://github.com/NVlabs/SegFormer)
 * [ShapeConv](https://github.com/hanchaoleng/ShapeConv)
 * [matterport_utils](https://github.com/atlantis-ar/matterport_utils)
+* [py360convert](https://github.com/sunset1995/py360convert)
 * [Depth2HHA-python](https://github.com/charlesCXK/Depth2HHA-python)
 * [mmsegmentation](https://mmsegmentation.readthedocs.io/en/0.x/)
 
 This work was partially funded by the EU Horizon Europe Framework Program under grant agreement 101058236 (HumanTech).
 
 ## License
+
 This repository is under the MIT license. For commercial use, please contact with the authors.
 
 ## Citations
+
 If you find this repo useful, please consider referencing the following paper:
 
 ```
@@ -137,4 +143,5 @@ If you find this repo useful, please consider referencing the following paper:
 ```
 
 ## Project status
+
 We are working on releasing the code and trained models, but no guarantee when the code will be released.
