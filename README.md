@@ -69,6 +69,10 @@ TODO
 (sfss_mmsi) <repo_path>$ python -m eval --config configs.sid.unimodal --split validation --epochs epoch-best.pth
 (sfss_mmsi) <repo_path>$ python -m eval --config configs.sid.bimodal --split validation --epochs epoch-best.pth
 (sfss_mmsi) <repo_path>$ python -m eval --config configs.sid.trimodal --split validation --epochs epoch-best.pth
+
+(sfss_mmsi) <repo_path>$ python -m eval --config configs.sct.unimodal --split <validation/test> --epochs epoch-best.pth
+(sfss_mmsi) <repo_path>$ python -m eval --config configs.sct.bimodal --split <validation/test> --epochs epoch-best.pth
+(sfss_mmsi) <repo_path>$ python -m eval --config configs.sct.trimodal --split <validation/test> --epochs epoch-best.pth
 ```
 
 ## Result
@@ -87,10 +91,10 @@ TODO
 
 | **Network**       | **valid mAcc** | **valid aAcc** | **valid mIoU** | **test mAcc** | **test aAcc** | **test mIoU** | Download        |
 | :---------------: |:-------------: | :------------: | :------------: |:------------: | :-----------: | :-----------: | :-------------: |
-| Unimodal (RGB)    |     80.476     |     95.729     |     71.941     |    76.099     |    95.388     |    68.343     |  |
-| Bimodal  (RGB-D)  |     82.043     |     96.253     |     73.775     |    77.881     |    95.670     |    70.169     |  |
-| Bimodal  (RGB-N)  |     83.247     |     96.500     |     74.378     |    78.683     |    96.115     |    71.001     |  |
-| Trimodal (RGB-D-N)|   **84.466**   |   **96.851**   |   **75.863**   |  **79.671**   |  **96.340**   |  **71.971**   |  |
+| Unimodal (RGB)    |     80.476     |     95.729     |     71.941     |    76.099     |    95.388     |    68.343     | [download](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStructured3D_1024x512%2Flog_Structured3D_mit_b2_DMLPDecoderV2) |
+| Bimodal  (RGB-D)  |     82.043     |     96.253     |     73.775     |    77.881     |    95.670     |    70.169     | [download](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStructured3D_1024x512%2Flog_Structured3D_dual_mit_b2_DMLPDecoderV2_Depth) |
+| Bimodal  (RGB-N)  |     83.247     |     96.500     |     74.378     |    78.683     |    96.115     |    71.001     | [download](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStructured3D_1024x512%2Flog_Structured3D_dual_mit_b2_DMLPDecoderV2_Normal) |
+| Trimodal (RGB-D-N)|   **84.466**   |   **96.851**   |   **75.863**   |  **79.671**   |  **96.340**   |  **71.971**   | [download](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStructured3D_1024x512%2Flog_Structured3D_trio_mit_b2_DMLPDecoderV2_Depth_Normal) |
 
 ### Matterport3D dataset
 
@@ -121,7 +125,7 @@ We also appreciate the open-source works:
 * [Depth2HHA-python](https://github.com/charlesCXK/Depth2HHA-python)
 * [mmsegmentation](https://mmsegmentation.readthedocs.io/en/0.x/)
 
-This work was partially funded by the EU Horizon Europe Framework Program under grant agreement 101058236 (HumanTech).
+**This work was partially funded by the EU Horizon Europe Framework Program under grant agreement 101058236 ([HumanTech](https://humantech-horizon.eu/)).**
 
 ## License
 
@@ -132,13 +136,13 @@ This repository is under the MIT license. For commercial use, please contact wit
 If you find this repo useful, please consider referencing the following paper:
 
 ```
-@misc{guttikonda2023single,
-      title={Single Frame Semantic Segmentation Using Multi-Modal Spherical Images}, 
-      author={Suresh Guttikonda and Jason Rambach},
-      year={2023},
-      eprint={2308.09369},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@article{DBLP:journals/corr/abs-2308-09369,
+  author       = {Suresh Guttikonda and
+                  Jason Rambach},
+  title        = {Single Frame Semantic Segmentation Using Multi-Modal Spherical Images},
+  journal      = {CoRR},
+  volume       = {abs/2308.09369},
+  year         = {2023}
 }
 ```
 
