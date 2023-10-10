@@ -11,6 +11,8 @@ More details can be found in our paper [[**PDF**](https://arxiv.org/pdf/2308.093
 
 ```python
 <root>$ git clone git@github.com:sguttikon/SFSS-MMSI.git
+<root>$ git clone git@github.com:sguttikon/matterport_utils.git
+<root>$ git clone git@github.com:sguttikon/py360convert.git
 ```
 
 ## Installation
@@ -23,6 +25,7 @@ More details can be found in our paper [[**PDF**](https://arxiv.org/pdf/2308.093
 (sfss_mmsi) <repo_path>$ python -m pip install -U openmim==0.3.5
 (sfss_mmsi) <repo_path>$ mim install mmcv-full==1.6.2
 (sfss_mmsi) <repo_path>$ python -m pip install mmsegmentation==0.30.0
+(sfss_mmsi) <root>$ python -m pip install -e py360convert
 ```
 
 ## Usage
