@@ -11,21 +11,23 @@ More details can be found in our paper [[**PDF**](https://arxiv.org/pdf/2308.093
 
 ```python
 <root>$ git clone git@github.com:sguttikon/SFSS-MMSI.git
-<root>$ git clone git@github.com:sguttikon/matterport_utils.git
-<root>$ git clone git@github.com:sguttikon/py360convert.git
+<root>$ git clone -b sfss_mmsi git@github.com:sguttikon/matterport_utils.git
+<root>$ git clone -b sfss_mmsi git@github.com:sguttikon/py360convert.git
 ```
 
 ## Installation
 
 ```python
-(base) <repo_path>$ conda create --name sfss_mmsi
-(base) <repo_path>$ conda activate sfss_mmsi
-(sfss_mmsi) <repo_path>$ conda install pytorch==1.13.1 torchvision==0.14.1 torchaudio==0.13.1 pytorch-cuda=11.7 -c pytorch -c nvidia
-(sfss_mmsi) <repo_path>$ python -m pip install timm==0.6.12 fvcore==0.1.5.post20221221 open3d==0.16.0 easydict==1.10 opencv-python==4.7.0.68 tensorboardx==2.5.1 notebook==7.0.2
-(sfss_mmsi) <repo_path>$ python -m pip install -U openmim==0.3.5
-(sfss_mmsi) <repo_path>$ mim install mmcv-full==1.6.2
-(sfss_mmsi) <repo_path>$ python -m pip install mmsegmentation==0.30.0
+(base) <root>$ conda create --name sfss_mmsi
+(base) <root>$ conda activate sfss_mmsi
+(sfss_mmsi) <root>$ conda install pytorch==1.13.1 torchvision==0.14.1 torchaudio==0.13.1 pytorch-cuda=11.7 -c pytorch -c nvidia
+(sfss_mmsi) <root>$ python -m pip install timm==0.6.12 fvcore==0.1.5.post20221221 open3d==0.16.0 easydict==1.10 opencv-python==4.7.0.68 tensorboardx==2.5.1 notebook==7.0.2
+(sfss_mmsi) <root>$ python -m pip install -U openmim==0.3.5
+(sfss_mmsi) <root>$ mim install mmcv-full==1.6.2
+(sfss_mmsi) <root>$ python -m pip install mmsegmentation==0.30.0
 (sfss_mmsi) <root>$ python -m pip install -e py360convert
+(sfss_mmsi) <root>$ cd SFSS-MMSI
+(sfss_mmsi) <repo_path>$
 ```
 
 ## Usage
@@ -36,6 +38,9 @@ LICENSE
 train.py
 eval.py
 /configs
+    /mp
+    /sct
+    /sid
 /data_processing
 /dataloader
 /datasets
@@ -60,10 +65,16 @@ TODO
 
 ### Train
 
+Refer [RGBX_Semantic_Segmentation](https://github.com/huaaaliu/RGBX_Semantic_Segmentation) for the pretrained segformer weights and place it under `pretrained/segformers`.
+
 ```python
 (sfss_mmsi) <repo_path>$ python -m train --config configs.sid.unimodal --devices 1
 (sfss_mmsi) <repo_path>$ python -m train --config configs.sid.bimodal --devices 1
 (sfss_mmsi) <repo_path>$ python -m train --config configs.sid.trimodal --devices 1
+
+(sfss_mmsi) <repo_path>$ python -m train --config configs.sct.unimodal --devices 1
+(sfss_mmsi) <repo_path>$ python -m train --config configs.sct.bimodal --devices 1
+(sfss_mmsi) <repo_path>$ python -m train --config configs.sct.trimodal --devices 1
 ```
 
 ### Eval
@@ -110,7 +121,7 @@ TODO
 
 ## Visuals
 
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+TODO
 
 ## Contributing
 
