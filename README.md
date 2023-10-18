@@ -6,6 +6,7 @@ Single Frame Semantic Segmentation Using Multi-Modal Spherical Images
 
 The official implementation of **Single Frame Semantic Segmentation Using Multi-Modal Spherical Images, Accepted to WACV 2024**:
 More details can be found in our paper [[**PDF**](https://arxiv.org/pdf/2308.09369.pdf)].
+![sfss-mmsi](figures/wacv_teaser.png)
 
 ## Getting started
 
@@ -61,7 +62,7 @@ eval.py
 
 ### Datapreparation
 
-TODO
+After installing the dependencies, we download and preprocess the datasets: [Stanford2D3DS](http://buildingparser.stanford.edu/dataset.html), [Structured3D](https://structured3d-dataset.org/) and [Matterport3D](https://niessner.github.io/Matterport/). Refer to `data_processing/`.
 
 ### Train
 
@@ -121,7 +122,7 @@ Refer [RGBX_Semantic_Segmentation](https://github.com/huaaaliu/RGBX_Semantic_Seg
 
 ## Visuals
 
-TODO
+![Segmentation-Results](figures/wacv_seg_results.png)
 
 ## Contributing
 
