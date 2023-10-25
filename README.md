@@ -124,6 +124,10 @@ Refer [RGBX_Semantic_Segmentation](https://github.com/huaaaliu/RGBX_Semantic_Seg
 
 ![Segmentation-Results](figures/wacv_seg_results.png)
 
+In [visualization/infer_pano_sem.ipynb](infer_pano_sem.ipynb), we use an out-of-training-distribution 360 image from PanoContext as an example.
+
+Additionally, see [visualization/infer_s2d3d_sem.ipynb](infer_s2d3d_sem.ipynb), [visualization/infer_s2d3d_sem.ipynb](infer_s2d3d_sem.ipynb), and [visualization/infer_mp3d_sem.ipynb](infer_mp3d_sem.ipynb) for interactive demo and visualization.
+
 ## Contributing
 
 If you are willing to contribute to this project, please contact with the authors.
