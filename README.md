@@ -22,6 +22,8 @@ More details can be found in our paper [[**PDF**](https://arxiv.org/pdf/2308.093
 (base) <root>$ conda create --name sfss_mmsi
 (base) <root>$ conda activate sfss_mmsi
 (sfss_mmsi) <root>$ conda install pytorch==1.13.1 torchvision==0.14.1 torchaudio==0.13.1 pytorch-cuda=11.7 -c pytorch -c nvidia
+(sfss_mmsi) <root>$ conda install -c "nvidia/label/cuda-11.7.0" cuda-toolkit
+(sfss_mmsi) <root>$ export CUDA_HOME=$CONDA_PREFIX
 (sfss_mmsi) <root>$ python -m pip install timm==0.6.12 fvcore==0.1.5.post20221221 open3d==0.16.0 easydict==1.10 opencv-python==4.7.0.68 tensorboardx==2.5.1 notebook==7.0.2
 (sfss_mmsi) <root>$ python -m pip install -U openmim==0.3.5
 (sfss_mmsi) <root>$ mim install mmcv-full==1.6.2
