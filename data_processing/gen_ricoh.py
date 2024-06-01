@@ -40,6 +40,30 @@ def save_imgs(dir_in, area_names, dir_out):
             break
 
 
+def save_depth(dir_in, area_names, dir_out):
+    for i, area_name in enumerate(area_names):
+        area, name = area_name.split(' ')
+
+        dir_dep_in = os.path.join(dir_in, area, 'pano', 'depth')
+        dir_dep_out = os.path.join(dir_out, area, 'pano', 'depth')
+        if not os.path.isdir(dir_dep_out):
+            os.makedirs(dir_dep_out)
+
+        path_dep_in = os.path.join(dir_dep_in, name + '_depth.png')
+        path_dep_out = os.path.join(dir_dep_out, name + '_depth.png')
+        if scale == 1.0:
+            shutil.copyfile(path_dep_in, path_dep_out)
+        else:
+            dep = cv2.imread(path_dep_in, cv2.IMREAD_UNCHANGED)
+            dep = cv2.resize(dep, None, fx=scale, fy=scale, interpolation=cv2.INTER_NEAREST)
+            assert dep.shape[:2] == hw
+            cv2.imwrite(path_dep_out, dep)
+
+        print('dep', i, area_name)
+        if is_test:
+            break
+
+
 def save_labels(dir_in, area_names, dir_out):
     path_colors_label = os.path.join(dir_out, 'assets', 'scan3r160pallete.npy')
     with open(path_colors_label, 'rb') as f:
@@ -116,6 +140,7 @@ def main(dir_in, dir_out, cpus):
     area_names = train_list + test_list
     # print('area_names', len(area_names))
     save_imgs(dir_in, area_names, dir_out)
+    save_depth(dir_in, area_names, dir_out)
     save_labels(dir_in, area_names, dir_out)
 
 

@@ -162,7 +162,7 @@ def get_matterport3d_pan_pipeline(config, split_name='validation'):
     }
     return Matterport3dPanDataset(setting=data_setting, split_name=split_name, preprocess=val_preprocess)
 
-def get_ricoh3d_pan_pipeline(config, split_name='validation'):
+def get_ricoh3d_pan_pipeline(config, split_name='validation', mapping_name='Stanford2D3DS'):
     val_preprocess = ValPre()
     data_setting = {
         'dataset_path': config.dataset_path,
@@ -174,7 +174,7 @@ def get_ricoh3d_pan_pipeline(config, split_name='validation'):
         'train_source': config.train_source,
         'eval_source': config.eval_source,
     }
-    return Ricoh3dPanDataset(setting=data_setting, split_name=split_name, preprocess=val_preprocess)
+    return Ricoh3dPanDataset(setting=data_setting, split_name=split_name, mapping_name=mapping_name, preprocess=val_preprocess)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

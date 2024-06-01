@@ -441,7 +441,7 @@ class Matterport3dPanDataset(data.Dataset):
 
 class Ricoh3dPanDataset(data.Dataset):
 
-    def __init__(self, setting, split_name, preprocess=None, file_length=None):
+    def __init__(self, setting, split_name, mapping_name, preprocess=None, file_length=None):
         super(Ricoh3dPanDataset, self).__init__()
         assert split_name in ['train', 'validation', 'test']
         self.dataset_path = setting['dataset_path']
@@ -454,6 +454,15 @@ class Ricoh3dPanDataset(data.Dataset):
         self.file_names = self._get_file_names(split_name)
         self.file_length = file_length
         self.preprocess = preprocess
+
+        if mapping_name == 'Stanford2D3DS':
+            with open(os.path.join(self.dataset_path, 'assets/2d3dsmapping.json'), 'r', encoding='utf8') as f:
+                self.mapping_json = json.load(f)
+        elif mapping_name == 'Structured3D':
+            with open(os.path.join(self.dataset_path, 'assets/structured3dmapping.json'), 'r', encoding='utf8') as f:
+                self.mapping_json = json.load(f)
+        else:
+            raise NotImplementedError
 
     def __len__(self):
         if self.file_length is not None:
@@ -472,9 +481,11 @@ class Ricoh3dPanDataset(data.Dataset):
         data = image_decoder(rgb_path, 'rgb')
         out['camera-rgb-1K'] = np.array(data * 255.0, np.uint8) # (H, W, 3)
 
-        gt_path = os.path.join(self.dataset_path, item_area, 'pano/semantic', item_name + '_semantic.png')
-        data = image_decoder(gt_path, 'u8')
-        out['camera-semantic-1K'] = data - 1  # (H, W) # transform unknown id: 0 -> 255
+        gt_path = os.path.join(self.dataset_path, item_area, 'pano/semantic', item_name + '_semantic.npy')
+        with open(gt_path, 'rb') as f:
+            data = np.load(gt_path)
+        semantic = np.stack([np.array([self.mapping_json[str(l)] for l in r], dtype=np.uint8) for r in data])
+        out['camera-semantic-1K'] = semantic - 1  # (H, W) # transform unknown id: 0 -> 255
 
         for component_name in self.modality_x:
             if component_name == 'camera-hha-1K':
