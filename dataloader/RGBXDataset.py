@@ -438,3 +438,91 @@ class Matterport3dPanDataset(data.Dataset):
             file_names.append(file_name)
 
         return file_names
+
+class Ricoh3dPanDataset(data.Dataset):
+
+    def __init__(self, setting, split_name, preprocess=None, file_length=None):
+        super(Ricoh3dPanDataset, self).__init__()
+        assert split_name in ['train', 'validation', 'test']
+        self.dataset_path = setting['dataset_path']
+        self.rgb = setting['rgb']
+        self.ann = setting['ann']
+        self.modality_x = setting['modality_x']
+        self.mask_black = setting['mask_black']
+        self.ignore_index = setting['ignore_index']
+        self.source = setting['eval_source'] if split_name == "validation" else setting['train_source']
+        self.file_names = self._get_file_names(split_name)
+        self.file_length = file_length
+        self.preprocess = preprocess
+
+    def __len__(self):
+        if self.file_length is not None:
+            return self.file_length
+        return len(self.file_names)
+
+    def __getitem__(self, index):
+        out = {}
+        if self.file_length is not None:
+            raise NotImplementedError
+        else:
+            item_area, item_name = self.file_names[index].strip().split(' ')
+        out['sample_token'] = f'{item_area}/{item_name}'
+
+        rgb_path = os.path.join(self.dataset_path, item_area, 'pano/rgb', item_name + '_rgb.png')
+        data = image_decoder(rgb_path, 'rgb')
+        out['camera-rgb-1K'] = np.array(data * 255.0, np.uint8) # (H, W, 3)
+
+        gt_path = os.path.join(self.dataset_path, item_area, 'pano/semantic', item_name + '_semantic.png')
+        data = image_decoder(gt_path, 'u8')
+        out['camera-semantic-1K'] = data - 1  # (H, W) # transform unknown id: 0 -> 255
+
+        for component_name in self.modality_x:
+            if component_name == 'camera-hha-1K':
+                x_path = os.path.join(self.dataset_path, item_area, 'pano/hha', item_name + '_hha.png')
+                data = image_decoder(x_path, 'rgb')
+                out[component_name] = np.array(data * 255.0, np.uint8) # (H, W, 3)
+            elif component_name == 'camera-normals-1K':
+                x_path = os.path.join(self.dataset_path, item_area, 'pano/normal', item_name + '_normals.png')
+                data = image_decoder(x_path, 'rgb')
+                out[component_name] = np.array(data * 255.0, np.uint8) # (H, W, 3)
+            elif component_name == 'camera-depth-1K':
+                x_path = os.path.join(self.dataset_path, item_area, 'pano/depth', item_name + '_depth.png')
+                data = image_decoder(x_path, 'i')
+                x = np.array(data * 255.0, np.uint8)
+                # ignore max depth (65535 -> 0)
+                x = np.where(x == 255, 0, x)
+                if x.ndim == 2:
+                    # single channel -> 3 channels
+                    out[component_name] = cv2.merge([x, x, x]) # (H, W, 3)
+                else:
+                    raise NotImplementedError
+            else:
+                raise NotImplementedError
+
+        if self.mask_black:
+            out['camera-semantic-1K'][out['camera-rgb-1K'].sum(-1) == 0] = self.ignore_index  # mask as unknown id: 255
+        out['camera-semantic-1K'][out['camera-semantic-1K'] == 255] = self.ignore_index  # mask as unknown id: 255
+
+        if self.preprocess is not None:
+            if len(self.modality_x) == 1:
+                rgb, gt, x1 = out['camera-rgb-1K'], out['camera-semantic-1K'], out[self.modality_x[0]]
+                rgb, gt, x1, _ = self.preprocess(rgb, gt, x1, x1)
+                out['camera-rgb-1K'], out['camera-semantic-1K'], out[self.modality_x[0]] = rgb, gt, x1
+            elif len(self.modality_x) == 2:
+                rgb, gt, x1, x2 = out['camera-rgb-1K'], out['camera-semantic-1K'], out[self.modality_x[0]], out[self.modality_x[1]]
+                rgb, gt, x1, x2 = self.preprocess(rgb, gt, x1, x2)
+                out['camera-rgb-1K'], out['camera-semantic-1K'], out[self.modality_x[0]], out[self.modality_x[1]] = rgb, gt, x1, x2
+            else:
+                raise NotImplementedError   
+        return out
+
+    def _get_file_names(self, split_name):
+        file_names = []
+        with open(self.source) as f:
+            files = f.readlines()
+
+        for item in files:
+            file_name = item.strip()
+            file_names.append(file_name)
+
+        return file_names

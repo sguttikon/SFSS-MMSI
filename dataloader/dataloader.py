@@ -9,6 +9,7 @@ from utils.transforms import generate_random_crop_pos, random_crop_pad_to_shape,
 from dataloader.RGBXDataset import Stanford2d3dPanDataset
 from dataloader.RGBXDataset import Structured3dPanDataset
 from dataloader.RGBXDataset import Matterport3dPanDataset
+from dataloader.RGBXDataset import Ricoh3dPanDataset
 
 def random_mirror(rgb, gt, modal_x1, modal_x2):
     if random.random() >= 0.5:
@@ -179,3 +180,17 @@ def get_matterport3d_pan_pipeline(config):
         'test_source': config.test_source,
     }
     return Matterport3dPanDataset(setting=data_setting, split_name='train', preprocess=train_preprocess)
+
+def get_ricoh3d_pan_pipeline(config):
+    train_preprocess = TrainPre(config)
+    data_setting = {
+        'dataset_path': config.dataset_path,
+        'rgb': config.rgb,
+        'ann': config.ann,
+        'modality_x': config.modality_x,
+        'ignore_index': config.ignore_index,
+        'mask_black': ('dual' not in config.backbone and 'trio' not in config.backbone),
+        'train_source': config.train_source,
+        'eval_source': config.eval_source,
+    }
+    return Ricoh3dPanDataset(setting=data_setting, split_name='train', preprocess=train_preprocess)

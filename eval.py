@@ -14,6 +14,7 @@ from mmseg.core.evaluation import mean_iou
 from dataloader.RGBXDataset import Stanford2d3dPanDataset
 from dataloader.RGBXDataset import Structured3dPanDataset
 from dataloader.RGBXDataset import Matterport3dPanDataset
+from dataloader.RGBXDataset import Ricoh3dPanDataset
 from models.builder import EncoderDecoder as segmodel
 from dataloader.dataloader import ValPre, __FOLD__
 from importlib import import_module
@@ -160,6 +161,20 @@ def get_matterport3d_pan_pipeline(config, split_name='validation'):
         'test_source': config.test_source,
     }
     return Matterport3dPanDataset(setting=data_setting, split_name=split_name, preprocess=val_preprocess)
+
+def get_ricoh3d_pan_pipeline(config, split_name='validation'):
+    val_preprocess = ValPre()
+    data_setting = {
+        'dataset_path': config.dataset_path,
+        'rgb': config.rgb,
+        'ann': config.ann,
+        'modality_x': config.modality_x,
+        'ignore_index': config.ignore_index,
+        'mask_black': ('dual' not in config.backbone and 'trio' not in config.backbone),
+        'train_source': config.train_source,
+        'eval_source': config.eval_source,
+    }
+    return Ricoh3dPanDataset(setting=data_setting, split_name=split_name, preprocess=val_preprocess)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
