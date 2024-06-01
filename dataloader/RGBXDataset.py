@@ -450,7 +450,7 @@ class Ricoh3dPanDataset(data.Dataset):
         self.modality_x = setting['modality_x']
         self.mask_black = setting['mask_black']
         self.ignore_index = setting['ignore_index']
-        self.source = setting['eval_source'] if split_name == "validation" else setting['train_source']
+        self.source = setting['test_source'] if split_name == "test" else (setting['eval_source'] if split_name == "validation" else setting['train_source'])
         self.file_names = self._get_file_names(split_name)
         self.file_length = file_length
         self.preprocess = preprocess

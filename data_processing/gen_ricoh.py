@@ -10,7 +10,7 @@ import json
 from multiprocessing import Process
 
 train_areas = []
-test_areas = ['parking1', 'parking2', 'parking3', 'parking4']
+test_areas = ['parking1', 'parking2', 'parking3', 'parking4', 'coffee_room', 'hospital_b', 'floor4']
 is_test = False
 scale = 512.0/2896.0
 hw = (512, 1024)

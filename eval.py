@@ -173,6 +173,7 @@ def get_ricoh3d_pan_pipeline(config, split_name='validation', mapping_name='Stan
         'mask_black': ('dual' not in config.backbone and 'trio' not in config.backbone),
         'train_source': config.train_source,
         'eval_source': config.eval_source,
+        'test_source': config.test_source,
     }
     return Ricoh3dPanDataset(setting=data_setting, split_name=split_name, mapping_name=mapping_name, preprocess=val_preprocess)
 
