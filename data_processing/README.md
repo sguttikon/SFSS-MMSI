@@ -62,3 +62,16 @@ for each scan:
 # process segmentation maps
 (sfss_mmsi) <matterport_utils_repo_path>$ python -m preparepano.process_semantics --m3d_path="<sfss_mmsi_path>/datasets/Matterport3D-1K" --scan_id <scan_id>
 ```
+
+### Process Ricoh3D Panoramas
+
+```
+<raw_dataset_path>/Ricoh3D
+    /parking1
+        /pano    # equirectangular projections
+            ...
+```
+
+```python
+(sfss_mmsi) <sfss_mmsi_repo_path>$ python -m data_processing.gen_ricoh -i "<raw_dataset_path>/Ricoh3D" -o "<sfss_mmsi_path>/datasets/Ricoh3D-1K"
+```
