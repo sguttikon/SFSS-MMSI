@@ -492,8 +492,8 @@ class Ricoh3dPanDataset(data.Dataset):
                 x_path = os.path.join(self.dataset_path, item_area, 'pano/hha', item_name + '_hha.png')
                 data = image_decoder(x_path, 'rgb')
                 out[component_name] = np.array(data * 255.0, np.uint8) # (H, W, 3)
-            elif component_name == 'camera-normals-1K':
-                x_path = os.path.join(self.dataset_path, item_area, 'pano/normal', item_name + '_normals.png')
+            elif component_name == 'camera-normal-1K':
+                x_path = os.path.join(self.dataset_path, item_area, 'pano/normal', item_name + '_normal.png')
                 data = image_decoder(x_path, 'rgb')
                 out[component_name] = np.array(data * 255.0, np.uint8) # (H, W, 3)
             elif component_name == 'camera-depth-1K':

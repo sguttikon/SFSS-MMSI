@@ -40,6 +40,30 @@ def save_imgs(dir_in, area_names, dir_out):
             break
 
 
+def save_normals(dir_in, area_names, dir_out):
+    for i, area_name in enumerate(area_names):
+        area, name = area_name.split(' ')
+
+        dir_nor_in = os.path.join(dir_in, area, 'pano', 'normal')
+        dir_nor_out = os.path.join(dir_out, area, 'pano', 'normal')
+        if not os.path.isdir(dir_nor_out):
+            os.makedirs(dir_nor_out)
+
+        path_nor_in = os.path.join(dir_nor_in, name + '_normal.png')
+        path_nor_out = os.path.join(dir_nor_out, name + '_normal.png')
+        if scale == 1.0:
+            shutil.copyfile(path_nor_in, path_nor_out)
+        else:
+            nor = cv2.imread(path_nor_in, cv2.IMREAD_COLOR)
+            nor = cv2.resize(nor, None, fx=scale, fy=scale, interpolation=cv2.INTER_LINEAR)
+            assert nor.shape[:2] == hw
+            cv2.imwrite(path_nor_out, nor)
+
+        print('nor', i, area_name)
+        if is_test:
+            break
+
+
 def save_depth(dir_in, area_names, dir_out):
     for i, area_name in enumerate(area_names):
         area, name = area_name.split(' ')
@@ -140,6 +164,7 @@ def main(dir_in, dir_out, cpus):
     area_names = train_list + test_list
     # print('area_names', len(area_names))
     save_imgs(dir_in, area_names, dir_out)
+    save_normals(dir_in, area_names, dir_out)
     save_depth(dir_in, area_names, dir_out)
     save_labels(dir_in, area_names, dir_out)
 
