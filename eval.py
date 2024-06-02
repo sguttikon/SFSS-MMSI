@@ -113,6 +113,8 @@ def get_eval_pipeline(name, config, split_name='validation'):
         return get_structured3d_pan_pipeline(config, split_name)
     elif name.lower() == 'matterport3d_pan':
         return get_matterport3d_pan_pipeline(config, split_name)
+    elif name.lower() == 'ricoh3d_pan':
+        return get_ricoh3d_pan_pipeline(config, split_name)
     else:
         raise NotImplementedError
 
@@ -162,7 +164,7 @@ def get_matterport3d_pan_pipeline(config, split_name='validation'):
     }
     return Matterport3dPanDataset(setting=data_setting, split_name=split_name, preprocess=val_preprocess)
 
-def get_ricoh3d_pan_pipeline(config, split_name='validation', mapping_name='Stanford2D3DS'):
+def get_ricoh3d_pan_pipeline(config, split_name='validation'):
     val_preprocess = ValPre()
     data_setting = {
         'dataset_path': config.dataset_path,
@@ -174,8 +176,9 @@ def get_ricoh3d_pan_pipeline(config, split_name='validation', mapping_name='Stan
         'train_source': config.train_source,
         'eval_source': config.eval_source,
         'test_source': config.test_source,
+        'mapping_name': config.mapping_name,
     }
-    return Ricoh3dPanDataset(setting=data_setting, split_name=split_name, mapping_name=mapping_name, preprocess=val_preprocess)
+    return Ricoh3dPanDataset(setting=data_setting, split_name=split_name, preprocess=val_preprocess)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -202,6 +205,8 @@ if __name__ == "__main__":
         valid_pipeline = get_eval_pipeline('structured3d_pan', config, split_name=args.split)
     elif config.dataset_name == 'Matterport3D':
         valid_pipeline = get_eval_pipeline('matterport3d_pan', config, split_name=args.split)
+    elif config.dataset_name == 'Ricoh3D':
+        valid_pipeline = get_eval_pipeline('ricoh3d_pan', config, split_name=args.split)
     else:
         raise NotImplementedError
  
