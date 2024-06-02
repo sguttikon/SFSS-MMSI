@@ -11,7 +11,6 @@ config = C
 cfg = C
 
 C.seed = 12345
-C.fold = 'F1' # TODO: change this to F1, F2 or F3
 C.root = '<sfss_mmsi_path>' # TODO: change this to your own path
 
 remoteip = os.popen('pwd').read()
@@ -27,8 +26,6 @@ C.modality_x = ['camera-depth-1K', 'camera-normal-1K']
 C.train_source = osp.join(C.dataset_path, 'train.txt')
 C.eval_source = osp.join(C.dataset_path, 'validation.txt')
 C.test_source = osp.join(C.dataset_path, 'test.txt')
-C.num_classes = 13
-C.class_names =  ['<UNK>','beam','board','bookcase','ceiling','chair','clutter','column','door','floor','sofa','table','wall','window']
 
 """Image Config"""
 C.ignore_index = 255
@@ -72,8 +69,24 @@ C.checkpoint_start_epoch = 0
 C.checkpoint_step = 1
 
 assert len(C.modality_x) == 2
-if C.modality_x[0] == 'camera-depth-1K' and C.modality_x[1] == 'camera-normal-1K':
-    C.log_dir = osp.abspath(osp.join(C.root, 'workdirs', 'Stanford2D3DS_1024x512/log_' + C.mapping_name + '_' + C.backbone + f'_DMLPDecoderV2_Depth_Normal_{C.fold}'))
+if C.mapping_name == 'Stanford2D3DS':
+    C.fold = 'F1' # TODO: change this to F1, F2 or F3
+    C.num_classes = 13
+    C.class_names =  ['<UNK>','beam','board','bookcase','ceiling','chair','clutter','column','door','floor','sofa','table','wall','window']
+    if C.modality_x[0] == 'camera-depth-1K' and C.modality_x[1] == 'camera-normal-1K':
+        C.log_dir = osp.abspath(osp.join(C.root, 'workdirs', 'Stanford2D3DS_1024x512/log_' + C.mapping_name + '_' + C.backbone + f'_DMLPDecoderV2_Depth_Normal_{C.fold}'))
+    else:
+        raise NotImplementedError
+elif C.mapping_name == 'Structured3D':
+    C.num_classes = 40
+    C.class_names =  ['background', 'wall', 'floor', 'cabinet', 'bed', 'chair', 'sofa', 'table', 'door', 'window', 'bookshelf', 'picture', 'counter',
+                      'blinds', 'desk', 'shelves', 'curtain', 'dresser', 'pillow', 'mirror', 'floor mat', 'clothes', 'ceiling', 'books', 'refridgerator',
+                      'television', 'paper', 'towel', 'shower curtain', 'box', 'whiteboard', 'person', 'night stand', 'toilet', 'sink', 'lamp', 'bathtub',
+                      'bag', 'otherstructure', 'otherfurniture', 'otherprop']
+    if C.modality_x[0] == 'camera-depth-1K' and C.modality_x[1] == 'camera-normal-1K':
+        C.log_dir = osp.abspath(osp.join(C.root, 'workdirs', 'Structured3D_1024x512/log_' + C.mapping_name + '_' + C.backbone + '_DMLPDecoderV2_Depth_Normal'))
+    else:
+        raise NotImplementedError
 else:
     raise NotImplementedError
 C.tb_dir = osp.abspath(osp.join(C.log_dir, "tb"))
