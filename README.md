@@ -94,7 +94,7 @@ Refer [RGBX_Semantic_Segmentation](https://github.com/huaaaliu/RGBX_Semantic_Seg
 
 ## Result
 
-### Stanford2D3DS dataset
+### Stanford2D3DS trained model(s)
 
 | **Network**       | **Fold**  | **mAcc**    | **aAcc**    | **mIoU**    | Download        |
 | :---------------: | :-------: | :---------: | :---------: | :---------: | :-------------: |
@@ -104,23 +104,23 @@ Refer [RGBX_Semantic_Segmentation](https://github.com/huaaaliu/RGBX_Semantic_Seg
 | Bimodal  (RGB-H)  |    avg    | **70.683**  | **88.066**  | **60.603**  | [Fold1](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStanford2D3DS_1024x512%2Flog_Stanford2D3DS_dual_mit_b2_DMLPDecoderV2_HHA_F1), [Fold2](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStanford2D3DS_1024x512%2Flog_Stanford2D3DS_dual_mit_b2_DMLPDecoderV2_HHA_F2), [Fold3](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStanford2D3DS_1024x512%2Flog_Stanford2D3DS_dual_mit_b2_DMLPDecoderV2_HHA_F3) |
 | Trimodal (RGB-D-N)|    avg    |   69.031    |   87.322    |   59.426    | [Fold1](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStanford2D3DS_1024x512%2Flog_Stanford2D3DS_trio_mit_b2_DMLPDecoderV2_Depth_Normal_F1), [Fold2](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStanford2D3DS_1024x512%2Flog_Stanford2D3DS_trio_mit_b2_DMLPDecoderV2_Depth_Normal_F2), [Fold3](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStanford2D3DS_1024x512%2Flog_Stanford2D3DS_trio_mit_b2_DMLPDecoderV2_Depth_Normal_F3) |
 
-### Structured3D dataset
+### Structured3D trained model(s)
 
 | **Network**       | **valid mAcc** | **valid aAcc** | **valid mIoU** | **test mAcc** | **test aAcc** | **test mIoU** | Download        |
 | :---------------: |:-------------: | :------------: | :------------: |:------------: | :-----------: | :-----------: | :-------------: |
-| Unimodal (RGB)    |     80.476     |     95.729     |     71.941     |    76.099     |    95.388     |    68.343     | [download](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStructured3D_1024x512%2Flog_Structured3D_mit_b2_DMLPDecoderV2) |
-| Bimodal  (RGB-D)  |     82.043     |     96.253     |     73.775     |    77.881     |    95.670     |    70.169     | [download](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStructured3D_1024x512%2Flog_Structured3D_dual_mit_b2_DMLPDecoderV2_Depth) |
-| Bimodal  (RGB-N)  |     83.247     |     96.500     |     74.378     |    78.683     |    96.115     |    71.001     | [download](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStructured3D_1024x512%2Flog_Structured3D_dual_mit_b2_DMLPDecoderV2_Normal) |
-| Trimodal (RGB-D-N)|   **84.466**   |   **96.851**   |   **75.863**   |  **79.671**   |  **96.340**   |  **71.971**   | [download](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStructured3D_1024x512%2Flog_Structured3D_trio_mit_b2_DMLPDecoderV2_Depth_Normal) |
+| Unimodal (RGB)    |     80.476     |     95.729     |     71.941     |    76.099     |    95.388     |    68.343     | [model](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStructured3D_1024x512%2Flog_Structured3D_mit_b2_DMLPDecoderV2) |
+| Bimodal  (RGB-D)  |     82.043     |     96.253     |     73.775     |    77.881     |    95.670     |    70.169     | [model](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStructured3D_1024x512%2Flog_Structured3D_dual_mit_b2_DMLPDecoderV2_Depth) |
+| Bimodal  (RGB-N)  |     83.247     |     96.500     |     74.378     |    78.683     |    96.115     |    71.001     | [model](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStructured3D_1024x512%2Flog_Structured3D_dual_mit_b2_DMLPDecoderV2_Normal) |
+| Trimodal (RGB-D-N)|   **84.466**   |   **96.851**   |   **75.863**   |  **79.671**   |  **96.340**   |  **71.971**   | [model](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FStructured3D_1024x512%2Flog_Structured3D_trio_mit_b2_DMLPDecoderV2_Depth_Normal) |
 
-### Matterport3D dataset
+### Matterport3D trained model(s)
 
 | **Network**       | **valid mAcc** | **valid aAcc** | **valid mIoU** | **test mAcc** | **test aAcc** | **test mIoU** | Download        |
 | :---------------: |:-------------: | :------------: | :------------: |:------------: | :-----------: | :-----------: | :-------------: |
-| Unimodal (RGB)    |     46.739     |     76.694     |     35.154     |    43.655     |    69.169     |    31.301     | [download](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FMatterport3D_1024x512%2Flog_Matterport3D_mit_b2_DMLPDecoderV2) |
-| Bimodal  (RGB-D)  |     51.395     |     78.763     |     39.191     |    49.242     |  **71.592**   |  **35.921**   | [download](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FMatterport3D_1024x512%2Flog_Matterport3D_dual_mit_b2_DMLPDecoderV2_Depth) |
-| Bimodal  (RGB-N)  |     51.136     |     78.738     |     38.912     |  **50.387**   |    71.239     |    35.773     | [download](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FMatterport3D_1024x512%2Flog_Matterport3D_dual_mit_b2_DMLPDecoderV2_Normal) |
-| Trimodal (RGB-D-N)|   **51.563**   |   **78.937**   |   **39.263**   |    50.007     |    71.422     |    35.520     | [download](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FMatterport3D_1024x512%2Flog_Matterport3D_trio_mit_b2_DMLPDecoderV2_Depth_Normal) |
+| Unimodal (RGB)    |     46.739     |     76.694     |     35.154     |    43.655     |    69.169     |    31.301     | [model](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FMatterport3D_1024x512%2Flog_Matterport3D_mit_b2_DMLPDecoderV2) |
+| Bimodal  (RGB-D)  |     51.395     |     78.763     |     39.191     |    49.242     |  **71.592**   |  **35.921**   | [model](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FMatterport3D_1024x512%2Flog_Matterport3D_dual_mit_b2_DMLPDecoderV2_Depth) |
+| Bimodal  (RGB-N)  |     51.136     |     78.738     |     38.912     |  **50.387**   |    71.239     |    35.773     | [model](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FMatterport3D_1024x512%2Flog_Matterport3D_dual_mit_b2_DMLPDecoderV2_Normal) |
+| Trimodal (RGB-D-N)|   **51.563**   |   **78.937**   |   **39.263**   |    50.007     |    71.422     |    35.520     | [model](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FMatterport3D_1024x512%2Flog_Matterport3D_trio_mit_b2_DMLPDecoderV2_Depth_Normal) |
 
 ## Visuals
 
