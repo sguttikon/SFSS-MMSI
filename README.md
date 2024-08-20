@@ -117,10 +117,10 @@ Refer [RGBX_Semantic_Segmentation](https://github.com/huaaaliu/RGBX_Semantic_Seg
 
 | **Network**       | **valid mAcc** | **valid aAcc** | **valid mIoU** | **test mAcc** | **test aAcc** | **test mIoU** | Download        |
 | :---------------: |:-------------: | :------------: | :------------: |:------------: | :-----------: | :-----------: | :-------------: |
-| Unimodal (RGB)    |     46.739     |     76.694     |     35.154     |    43.655     |    69.169     |    31.301     |  |
-| Bimodal  (RGB-D)  |     51.395     |     78.763     |     39.191     |    49.242     |  **71.592**   |  **35.921**   |  |
-| Bimodal  (RGB-N)  |     51.136     |     78.738     |     38.912     |  **50.387**   |    71.239     |    35.773     |  |
-| Trimodal (RGB-D-N)|   **51.563**   |   **78.937**   |   **39.263**   |    50.007     |    71.422     |    35.520     |  |
+| Unimodal (RGB)    |     46.739     |     76.694     |     35.154     |    43.655     |    69.169     |    31.301     | [download](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FMatterport3D_1024x512%2Flog_Matterport3D_mit_b2_DMLPDecoderV2) |
+| Bimodal  (RGB-D)  |     51.395     |     78.763     |     39.191     |    49.242     |  **71.592**   |  **35.921**   | [download](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FMatterport3D_1024x512%2Flog_Matterport3D_dual_mit_b2_DMLPDecoderV2_Depth) |
+| Bimodal  (RGB-N)  |     51.136     |     78.738     |     38.912     |  **50.387**   |    71.239     |    35.773     | [download](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FMatterport3D_1024x512%2Flog_Matterport3D_dual_mit_b2_DMLPDecoderV2_Normal) |
+| Trimodal (RGB-D-N)|   **51.563**   |   **78.937**   |   **39.263**   |    50.007     |    71.422     |    35.520     | [download](https://cloud.dfki.de/owncloud/index.php/s/S6HqczbR3yL4Z82?path=%2Fworkdirs%2FMatterport3D_1024x512%2Flog_Matterport3D_trio_mit_b2_DMLPDecoderV2_Depth_Normal) |
 
 ## Visuals
 
@@ -157,16 +157,19 @@ This repository is under the MIT license. For commercial use, please contact wit
 If you find this repo useful, please consider referencing the following paper:
 
 ```
-@article{DBLP:journals/corr/abs-2308-09369,
+@inproceedings{DBLP:conf/wacv/GuttikondaR24,
   author       = {Suresh Guttikonda and
-                  Jason Rambach},
+                  Jason R. Rambach},
   title        = {Single Frame Semantic Segmentation Using Multi-Modal Spherical Images},
-  journal      = {CoRR},
-  volume       = {abs/2308.09369},
-  year         = {2023}
+  booktitle    = {{WACV}},
+  pages        = {3210--3219},
+  publisher    = {{IEEE}},
+  year         = {2024}
 }
 ```
 
 ## Project status
 
-We are working on releasing the code and trained models, but no guarantee when the code will be released.
+~~We are working on releasing the code and trained models, but no guarantee when the code will be released.~~
+
+The code and trained models are released.
